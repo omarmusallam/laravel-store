@@ -186,7 +186,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="{{route('dashboard.profile.edit')}}" class="d-block">{{ Auth::user()->name }}</a><br>
+                        <a href="{{ route('dashboard.profile.edit') }}"
+                            class="d-block">{{ Auth::user()->name }}</a><br>
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
                             <button class="btn btn-sm btn-outline-danger" type="submit">Logout</button>
