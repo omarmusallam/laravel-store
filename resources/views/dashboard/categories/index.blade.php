@@ -40,7 +40,7 @@
             @if ($categories->count())
                 @foreach ($categories as $category)
                     <tr>
-                        <td><img src="{{ asset('storage/' . $category->image) }}" alt="this is image" height="50px"></td>
+                        <td><img src="{{ asset('storage/' . $category->image) }}" alt="" height="50px"></td>
                         <td>{{ $category->id }}</td>
                         <td><a href="{{ route('dashboard.categories.show', $category->id) }}">{{ $category->name }}</a></td>
                         <td>{{ $category->parent->name }}</td>

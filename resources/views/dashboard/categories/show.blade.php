@@ -23,7 +23,7 @@
                     ->products()
                     ->with('store')
                     ->latest()
-                    ->paginate(3);
+                    ->paginate(5);
             @endphp
             @if ($category->products->count())
                 @foreach ($products as $product)

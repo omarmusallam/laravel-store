@@ -21,7 +21,7 @@ class UpdateUserLastActiveAt
         $user = $request->user();
 
         if ($user) {
-            $user->forceFill([
+            $user->forceFill([ // because not created to fillable
                 'last_active_at' => Carbon::now(),
             ])
             ->save();

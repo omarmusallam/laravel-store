@@ -24,7 +24,7 @@ class CartController extends Controller
     public function index()
     {
         // $repository = new CartModelRepository();
-        // $item = $cart->get();
+        // $item = $repository->get();
 
         return view('front.cart', [
             'cart' =>  $this->cart,

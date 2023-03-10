@@ -16,7 +16,7 @@ class CartModelRepository implements CartRepository
 
     public function __construct()
     {
-        $this->items = collect([]);
+        $this->items = collect([]); // Convert array to collection
     }
 
     public function get(): Collection
@@ -30,7 +30,7 @@ class CartModelRepository implements CartRepository
 
     public function add(Product $product, $quantity = 1)
     {
-        $item =  Cart::where('product_id', '=', $product->id)
+        $item = Cart::where('product_id', '=', $product->id)
             ->first();
 
         if (!$item) {
@@ -64,12 +64,12 @@ class CartModelRepository implements CartRepository
     {
         Cart::query()->delete();
     }
-
+    
     public function total(): float
     {
         /*return (float) Cart::join('products', 'products.id', '=', 'carts.product_id')
-            ->selectRaw('SUM(products.price * carts.quantity) as total')
-            ->value('total');*/
+        ->selectRaw('SUM(products.price * carts.quantity) as total')
+        ->value('total');*/
 
         return $this->get()->sum(function ($item) {
             return $item->quantity * $item->product->price;

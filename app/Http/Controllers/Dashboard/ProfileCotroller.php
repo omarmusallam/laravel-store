@@ -30,7 +30,7 @@ class ProfileCotroller extends Controller
             'country' => ['required', 'string', 'size:2'],
         ]);
 
-        $user = $request->user();
+        $user = $request->user(); // $user = Auth::user();
 
         $user->profile->fill($request->all())->save();
 

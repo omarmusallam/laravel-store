@@ -65,7 +65,7 @@ class ProductsController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
-        $tags = implode(',', $product->tags()->pluck('name')->toArray());
+        $tags = implode(',', $product->tags()->pluck('name')->toArray()); // Convert to string 
 
         return view('dashboard.products.edit', compact('product', 'tags'));
     }

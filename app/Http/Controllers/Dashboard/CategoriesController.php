@@ -33,7 +33,7 @@ class CategoriesController extends Controller
             ->filter($request->query())
             ->orderby('categories.name')
             // ->withTrashed()
-            ->paginate(); // return collection object
+            ->paginate(5); // return collection object
 
         return view('dashboard.categories.index', compact('categories'));
     }
