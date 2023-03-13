@@ -17,13 +17,13 @@ class CheckUserType
     public function handle(Request $request, Closure $next, ...$types)
     {
         $user = $request->user();
-        if(!$user){
+        if (!$user) {
             return redirect()->route('login');
         }
-        if(!in_array($user->type, $types)){
+        if (!in_array($user->type, $types)) {
             abort(403);
             // return redirect()->route('home');
-        } 
+        }
         return $next($request);
     }
 }

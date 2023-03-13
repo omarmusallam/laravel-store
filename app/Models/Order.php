@@ -11,7 +11,11 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
-        'store_id', 'user_id', 'payment_method', 'status', 'payment_status',
+        'store_id',
+        'user_id',
+        'payment_method',
+        'status',
+        'payment_status',
     ];
 
     public function store()
@@ -32,14 +36,17 @@ class Order extends Model
             ->using(OrderItem::class)
             ->as('order_item')
             ->withPivot([
-                'product_name', 'price', 'quantity', 'options',
+                'product_name',
+                'price',
+                'quantity',
+                'options',
             ]);
     }
 
-    // public function items()
-    // {
-    //     return $this->hasMany(OrderItem::class, 'order_id');
-    // }
+    public function items()
+    {
+        return $this->hasMany(OrderItem::class, 'order_id');
+    }
 
     public function addresses()
     {
@@ -60,14 +67,14 @@ class Order extends Model
             ->where('type', '=', 'shipping');
     }
 
-    // public function delivery()
-    // {
-    //     return $this->hasOne(Delivery::class);
-    // }
+    public function delivery()
+    {
+        return $this->hasOne(Delivery::class);
+    }
 
     protected static function booted()
     {
-        static::creating(function(Order $order) {
+        static::creating(function (Order $order) {
             // 20220001, 20220002
             $order->number = Order::getNextOrderNumber();
         });
@@ -76,7 +83,7 @@ class Order extends Model
     public static function getNextOrderNumber()
     {
         // SELECT MAX(number) FROM orders
-        $year =  Carbon::now()->year;
+        $year = Carbon::now()->year;
         $number = Order::whereYear('created_at', $year)->max('number');
         if ($number) {
             return $number + 1;
